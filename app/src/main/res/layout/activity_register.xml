@@ -6,23 +6,33 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/grayLight"
-    tools:context=".activities.LoginActivity">
-
-    <ImageView
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/game_question" />
+    tools:context=".activities.RegisterActivity">
 
     <EditText
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:textColorHint="@color/grayMid"
+        android:inputType="text"
+        android:layout_marginTop="60dp"
+        android:drawableLeft="@drawable/user_state"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_edit"
+        android:layout_marginRight="@dimen/horizontal_margin_edit"
+        android:maxLines="1"
+        android:background="@drawable/field_text"
+        android:textColor="@color/grayDark"/>
+
+    <EditText
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:hint="@string/email"
         android:textColorHint="@color/grayMid"
         android:inputType="text|textEmailAddress"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/email_state"
         android:paddingLeft="10dp"
         android:drawablePadding="10dp"
@@ -49,14 +59,31 @@
         android:background="@drawable/field_text"
         android:textColor="@color/grayDark"/>
 
+    <EditText
+        android:id="@+id/user_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone"
+        android:textColorHint="@color/grayMid"
+        android:inputType="number|phone"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/phone_state"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
+        android:layout_marginLeft="@dimen/horizontal_margin_edit"
+        android:layout_marginRight="@dimen/horizontal_margin_edit"
+        android:maxLines="1"
+        android:background="@drawable/field_text"
+        android:textColor="@color/grayDark"/>
+
     <Button
         android:layout_width="249dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@drawable/btn_purple"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textAllCaps="false"
-        android:onClick="btnLogin"
+        android:onClick="btnRegister"
         android:textColor="@android:color/white"
         android:textSize="17sp" />
 
@@ -65,9 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_accent"
-        android:text="@string/register"
+        android:text="@string/login"
         android:textAllCaps="false"
-        android:onClick="btnRegister"
+        android:onClick="btnLogin"
         android:textColor="@android:color/white"
         android:textSize="17sp" />
 

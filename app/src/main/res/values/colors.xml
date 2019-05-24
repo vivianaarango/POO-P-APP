@@ -9,6 +9,7 @@
     <color name="grayLight">#EEEEEE</color>
     <color name="grayMid">#AEAEB3</color>
     <color name="grayDark">#555B60</color>
+    <color name="gray">#B8B8B8</color>
 </resources>
 
 

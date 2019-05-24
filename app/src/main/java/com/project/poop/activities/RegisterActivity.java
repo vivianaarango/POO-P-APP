@@ -1,13 +1,13 @@
 package com.project.poop.activities;
 
-
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.project.poop.R;
 import com.project.poop.libraries.Base;
 import com.project.poop.libraries.CheckConexion;
@@ -17,6 +17,7 @@ import com.project.poop.libraries.Utils;
 import com.project.poop.managers.ManageSharedPreferences;
 import com.project.poop.managers.ManagerProgressDialog;
 import com.project.poop.models.login.ResponseLogin;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -25,53 +26,44 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity implements Callback<ResponseLogin> {
-
+public class RegisterActivity extends AppCompatActivity implements Callback<ResponseLogin> {
 
     private EditText userEmail;
     private EditText userPass;
+    private EditText userName;
+    private EditText userPhone;
     private String userEmailText;
     private String userPassText;
+    private String userNameText;
+    private String userPhoneText;
     private Retrofit retrofit;
     private InterfaceRetrofit retrofitIR;
     private ManagerProgressDialog progress;
     private ManageSharedPreferences manageSharedPreferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         manageSharedPreferences = new ManageSharedPreferences(this);
 
-        if (manageSharedPreferences.getSession()) {
-            Intent intent = new Intent(this, PrincipalActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-        userEmail = (EditText) findViewById(R.id.user_name);
+        userEmail = (EditText) findViewById(R.id.user_email);
         userPass = (EditText) findViewById(R.id.user_pass);
-
-        if (manageSharedPreferences.getUserEmail() != null) {
-            userEmail.setText(manageSharedPreferences.getUserEmail());
-        }
+        userName = (EditText) findViewById(R.id.user_name);
+        userPhone = (EditText) findViewById(R.id.user_phone);
 
         progress = new ManagerProgressDialog(this);
 
     }
 
-    public void btnRegister(View view){
-        Intent intent = new Intent(this, RegisterActivity.class);
+    public void btnLogin(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void btnLogin(View view) {
+    public void btnRegister(View view) {
 
         if (checkFields()){
 
@@ -94,15 +86,15 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
 
             if (checkConexion.isConnected()) {
                 progress.showProgress();
-                Call<ResponseLogin> call = retrofitIR.login(userEmail.getText().toString(), Encoded.encodeSHA256(pass));
+                Call<ResponseLogin> call = retrofitIR.register(userEmail.getText().toString(), Encoded.encodeSHA256(pass), userName.getText().toString(), userPhone.getText().toString());
                 //asynchronous call
                 call.enqueue(this);
             } else {
                 checkConexion.check();
             }
+
         }
     }
-
 
     @Override
     public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
@@ -125,22 +117,37 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
             } else {
                 if (responseLogin != null) {
                     if (responseLogin.getMessage() != null) {
-                        Toast.makeText(this, "Datos incorrectos. Intentalo nuevamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, responseLogin.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         }
 
         progress.dismissProgress();
+
+    }
+
+    @Override
+    public void onFailure(Call<ResponseLogin> call, Throwable t) {
+
     }
 
     private boolean checkFields() {
         boolean cancel = false;
         View focusView = null;
 
+        userName.setError(null);
         userEmail.setError(null);
         userPass.setError(null);
+        userPhone.setError(null);
 
+        userNameText = userName.getText().toString();
+
+        if (TextUtils.isEmpty(userNameText)) {
+            userName.setError(getString(R.string.error_field_required));
+            focusView = userName;
+            cancel = true;
+        }
 
         userEmailText = userEmail.getText().toString();
 
@@ -158,16 +165,22 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
             cancel = true;
         }
 
+        userPhoneText = userPhone.getText().toString();
+
+        if (TextUtils.isEmpty(userPhoneText)) {
+            userPhone.setError(getString(R.string.error_field_required));
+            focusView = userPhone;
+            cancel = true;
+        } else if (Utils.isValidPhoneNumber(userPhoneText)) {
+            userPhone.setError(getString(R.string.error_phone));
+            focusView = userPhone;
+            cancel = true;
+        }
+
         if (cancel) {
             focusView.requestFocus();
         }
 
         return !cancel;
     }
-
-    @Override
-    public void onFailure(Call<ResponseLogin> call, Throwable t) {
-
-    }
 }
-

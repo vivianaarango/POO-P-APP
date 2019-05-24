@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.PlayFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />-->
+
+    <Button
+        android:id="@+id/btn_easy"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/button_control_game"
+        android:shadowColor="#9FD356"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="@string/easy"
+        android:textColor="#342E37"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_medium"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button_control_game"
+        android:shadowColor="#9FD356"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="@string/medium"
+        android:textColor="#342E37"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_hard"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/button_control_game"
+        android:layout_marginTop="200dp"
+        android:shadowColor="#9FD356"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="@string/hard"
+        android:textColor="#342E37"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_expert"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/button_control_game"
+        android:layout_marginTop="300dp"
+        android:shadowColor="#9FD356"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="@string/expert"
+        android:textColor="#342E37"
+        android:textSize="22sp" />
+
+
+</FrameLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Poop</string>
+    <string name="app_name">POO!P</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -17,6 +17,25 @@
     <string name="pass">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
     <string name="register">Registrarse</string>
+    <string name="name">Nombre</string>
+    <string name="phone">Telefono</string>
 
+    <string name="loading">Cargando ...</string>
     <string name="error_conection">No es posible conectarse a internet, favor revise su conexión</string>
+    <string name="error_phone">Telefono invalido</string>
+    <string name="logout">Cerrar Sesión</string>
+
+    <string name="expert">Experto</string>
+    <string name="hard">Difícil</string>
+    <string name="medium">Medio</string>
+    <string name="easy">Facíl</string>
+
+    <string name="expertLevel">Nivel Experto</string>
+    <string name="hardLevel">Nivel Difícil</string>
+    <string name="mediumLevel">Nivel Medio</string>
+    <string name="easyLevel">Nivel Facíl</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

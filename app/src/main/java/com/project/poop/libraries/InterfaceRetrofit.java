@@ -2,6 +2,8 @@ package com.project.poop.libraries;
 
 
 import com.project.poop.models.login.ResponseLogin;
+import com.project.poop.models.question.ResponseAnswer;
+import com.project.poop.models.question.ResponseQuestion;
 
 import java.util.Map;
 
@@ -19,11 +21,49 @@ import retrofit2.http.Url;
  */
 public interface InterfaceRetrofit {
 
+    /*Login*/
     @FormUrlEncoded
     @POST(/*"api/*/"user/login")
     Call<ResponseLogin> login(
             @Field("email") String email,
             @Field("password") String pass
+    );
+
+    /*Registro*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"user/register")
+    Call<ResponseLogin> register(
+            @Field("email") String email,
+            @Field("password") String pass,
+            @Field("name") String name,
+            @Field("phone") String phone
+    );
+
+    /*Obtener pregunta*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"question/getquestion")
+    Call<ResponseQuestion> getQuestion(
+            @Field("id_user") String id_user,
+             @Field("difficulty") String difficulty,
+            @Field("id_game") String id_game
+
+    );
+
+    /*Obtener pregunta*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"question/getquestion")
+    Call<ResponseQuestion> startGame(
+            @Field("id_user") String id_user,
+            @Field("difficulty") String difficulty
+    );
+
+    /*Validar respuesta*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"question/validateanswer")
+    Call<ResponseAnswer> validateAnswer(
+            @Field("id_question") String id_question,
+            @Field("id_answer") String id_answer,
+            @Field("id_game") String id_game
     );
 
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_play"
     tools:context=".Fragments.PlayFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -16,13 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/button_control_game"
-        android:shadowColor="#9FD356"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
         android:text="@string/easy"
         android:textColor="#342E37"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:typeface="normal" />
 
     <Button
         android:id="@+id/btn_medium"
@@ -30,10 +28,6 @@
         android:layout_height="100dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/button_control_game"
-        android:shadowColor="#9FD356"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
         android:text="@string/medium"
         android:textColor="#342E37"
         android:textSize="22sp" />
@@ -44,10 +38,6 @@
         android:layout_height="100dp"
         android:background="@drawable/button_control_game"
         android:layout_marginTop="200dp"
-        android:shadowColor="#9FD356"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
         android:text="@string/hard"
         android:textColor="#342E37"
         android:textSize="22sp" />
@@ -58,10 +48,6 @@
         android:layout_height="100dp"
         android:background="@drawable/button_control_game"
         android:layout_marginTop="300dp"
-        android:shadowColor="#9FD356"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
         android:text="@string/expert"
         android:textColor="#342E37"
         android:textSize="22sp" />

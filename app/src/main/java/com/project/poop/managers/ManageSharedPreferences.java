@@ -10,10 +10,10 @@ public class ManageSharedPreferences {
     private final String KEY_USER_ID = "userId";
     private final String KEY_EMAIL = "email";
     private final String KEY_SESSION = "nothing";
-    private final String KEY_EASY = "false";
-    private final String KEY_MEDIUM = "false";
-    private final String KEY_HARD = "false";
-    private final String KEY_EXPERT = "false";
+    private final String KEY_EASY = "easy";
+    private final String KEY_MEDIUM = "medium";
+    private final String KEY_HARD = "hard";
+    private final String KEY_EXPERT = "expert";
     private final String KEY_GAME_ID = "gameid";
 
 
@@ -32,6 +32,45 @@ public class ManageSharedPreferences {
         editor.commit();
     }
 
+
+    public String getEasy(){
+        return getSettings().getString(KEY_EASY, null);
+    }
+
+    public void setEasy(String easy){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_EASY, easy);
+        editor.commit();
+    }
+    public String getMedium(){
+        return getSettings().getString(KEY_MEDIUM, null);
+    }
+
+    public void setMedium(String medium){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_MEDIUM, medium);
+        editor.commit();
+    }
+
+    public String getHard(){
+        return getSettings().getString(KEY_HARD, null);
+    }
+
+    public void setHard(String hard){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_HARD, hard);
+        editor.commit();
+    }
+
+    public String getExpert(){
+        return getSettings().getString(KEY_EXPERT, null);
+    }
+
+    public void setExpert(String expert){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_EXPERT, expert);
+        editor.commit();
+    }
 
     public String getUserEmail(){
         return getSettings().getString(KEY_EMAIL, null);
@@ -60,46 +99,6 @@ public class ManageSharedPreferences {
     public void setSession(Boolean session){
         SharedPreferences.Editor editor = getSettings().edit();
         editor.putBoolean(KEY_SESSION, session);
-        editor.commit();
-    }
-
-    public Boolean getEasy(){
-        return getSettings().getBoolean(KEY_EASY, false);
-    }
-
-    public void setEasy(Boolean easy){
-        SharedPreferences.Editor editor = getSettings().edit();
-        editor.putBoolean(KEY_EASY, easy);
-        editor.commit();
-    }
-
-    public Boolean getMedium(){
-        return getSettings().getBoolean(KEY_MEDIUM, false);
-    }
-
-    public void setMedium(Boolean medium){
-        SharedPreferences.Editor editor = getSettings().edit();
-        editor.putBoolean(KEY_MEDIUM, medium);
-        editor.commit();
-    }
-
-    public Boolean getHard(){
-        return getSettings().getBoolean(KEY_HARD, false);
-    }
-
-    public void setHard(Boolean hard){
-        SharedPreferences.Editor editor = getSettings().edit();
-        editor.putBoolean(KEY_HARD, hard);
-        editor.commit();
-    }
-
-    public Boolean getExpert(){
-        return getSettings().getBoolean(KEY_EXPERT, false);
-    }
-
-    public void setExpert(Boolean expert){
-        SharedPreferences.Editor editor = getSettings().edit();
-        editor.putBoolean(KEY_EXPERT, expert);
         editor.commit();
     }
 

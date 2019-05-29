@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#109648">
+
+    <TextView
+        android:id="@+id/levelUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/levelup"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/grayLight"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:shadowColor="@color/grayMid"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="1.8"/>
+
+    <TextView
+        android:id="@+id/levelUpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/levelUpText"
+        android:textColor="@color/grayLight"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:shadowColor="@color/grayMid"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="1.8"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/medalla" />
+
+    <Button
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/btn_accent"
+        android:text="@string/main"
+        android:textAllCaps="false"
+        android:onClick="btnMain"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

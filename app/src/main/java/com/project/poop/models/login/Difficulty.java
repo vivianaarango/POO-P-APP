@@ -15,7 +15,7 @@ public class Difficulty {
 
     @SerializedName("is_approved")
     @Expose
-    private Boolean is_approved;
+    private String is_approved;
 
     public String getId() {
         return id;
@@ -33,9 +33,9 @@ public class Difficulty {
         this.difficulty = difficulty;
     }
 
-    public Boolean getIs_approved() { return is_approved; }
+    public String getIs_approved() { return is_approved; }
 
-    public void setIs_approved(Boolean is_approved) {
+    public void setIs_approved(String is_approved) {
         this.is_approved = is_approved;
     }
 

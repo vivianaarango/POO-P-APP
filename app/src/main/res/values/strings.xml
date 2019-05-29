@@ -35,6 +35,18 @@
     <string name="mediumLevel">Nivel Medio</string>
     <string name="easyLevel">Nivel Facíl</string>
 
+    <string name="fail">Incorrecto !</string>
+    <string name="failText">Has fallado este nivel</string>
+    <string name="time">Perdiste !</string>
+    <string name="timeText">Se ha acabado el tiempo</string>
+    <string name="levelup">Ganaste !</string>
+    <string name="levelUpText">Has pasado este nivel</string>
+    <string name="correct">Correcto !</string>
+    <string name="correctText">Has acertado esta pregunta</string>
+    <string name="tryAgain">Intentar de nuevo</string>
+    <string name="main">Menu principal</string>
+    <string name="continued">Continuar</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

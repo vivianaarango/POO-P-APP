@@ -9,30 +9,49 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="#D8DDDE">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/level_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="25sp"
+            android:layout_marginTop="30dp"
+            android:textSize="50sp"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:shadowColor="@color/grayDark"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:shadowRadius="1.8"/>
 
         <TextView
             android:id="@+id/question_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold"
+            android:shadowColor="#8a6603"
+            android:shadowDx="3"
+            android:shadowDy="2"
+            android:shadowRadius="1.8"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -66,7 +85,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|end"
                             android:textSize="16sp"
-                            android:textColor="@color/colorPrimaryDark"/>
+                            android:textColor="@color/grayDark"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -100,7 +119,7 @@
                             android:layout_marginTop="10dp"
                             android:background="@drawable/buttonanswer"
                             android:textAllCaps="false"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/grayDark"
                             android:textSize="14sp"
                             android:padding="5dp"
                             android:layout_gravity="center" />
@@ -138,7 +157,7 @@
                             android:background="@drawable/buttonanswer"
                             android:textAllCaps="false"
                             android:padding="2dp"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/grayDark"
                             android:textSize="14sp"
                             android:layout_gravity="center" />
                     </LinearLayout>
@@ -175,7 +194,7 @@
                             android:background="@drawable/buttonanswer"
                             android:textAllCaps="false"
                             android:padding="2dp"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/grayDark"
                             android:textSize="14sp"
                             android:layout_gravity="center" />
                     </LinearLayout>
@@ -212,25 +231,11 @@
                             android:background="@drawable/buttonanswer"
                             android:textAllCaps="false"
                             android:padding="2dp"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/grayDark"
                             android:textSize="14sp"
                             android:layout_gravity="center" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <!--<Button
-                    android:id="@+id/modify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_state_blue"
-                    android:textColor="@android:color/white"
-                    android:onClick="btnFinish"
-                    android:textAllCaps="false"
-                    android:textSize="18sp"
-                    android:text="@string/finish"
-                    android:layout_gravity="center" />-->
-
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#F85A3E">
+
+    <TextView
+        android:id="@+id/correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/correct"
+        android:textAllCaps="true"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/grayLight"
+        android:textStyle="bold"
+        android:shadowColor="@color/grayMid"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="1.8"/>
+
+    <TextView
+        android:id="@+id/correctText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/correctText"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/grayLight"
+        android:textStyle="bold"
+        android:shadowColor="@color/grayMid"
+        android:shadowDx="3"
+        android:shadowDy="2"
+        android:shadowRadius="1.8"/>
+
+    <ImageView
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/correct" />
+
+    <Button
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/btn_accent"
+        android:text="@string/continued"
+        android:textAllCaps="false"
+        android:onClick="btnNext"
+        android:textColor="@android:color/white"
+        android:textSize="17sp" />
+
+    <Button
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonanswer"
+        android:text="@string/main"
+        android:textAllCaps="false"
+        android:onClick="btnMain"
+        android:textColor="@color/grayDark"
+        android:textSize="17sp" />
+
+</LinearLayout>

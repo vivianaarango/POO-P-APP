@@ -27,6 +27,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
             return new HomeFragment();
         } else if (position == 1){
             return new PlayFragment();
+        } else if (position == 2){
+            return new ListFragment();
         } else {
             return new HomeFragment();
         }

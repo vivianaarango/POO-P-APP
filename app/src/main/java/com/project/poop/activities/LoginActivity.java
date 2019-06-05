@@ -49,7 +49,12 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
 
         manageSharedPreferences = new ManageSharedPreferences(this);
 
+
         if (manageSharedPreferences.getSession()) {
+            Intent intent = new Intent(this, PrincipalActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
             Intent intent = new Intent(this, PrincipalActivity.class);
             startActivity(intent);
             finish();

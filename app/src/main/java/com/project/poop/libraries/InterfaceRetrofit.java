@@ -4,6 +4,7 @@ package com.project.poop.libraries;
 import com.project.poop.models.login.ResponseLogin;
 import com.project.poop.models.question.ResponseAnswer;
 import com.project.poop.models.question.ResponseQuestion;
+import com.project.poop.models.themes.ResponseTheme;
 
 import java.util.Map;
 
@@ -66,5 +67,11 @@ public interface InterfaceRetrofit {
             @Field("id_game") String id_game
     );
 
+    /*Obtener temas de consulta*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"theme/themelist")
+    Call<ResponseTheme> getThemes(
+            @Field("list") String list
+    );
 
 }

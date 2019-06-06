@@ -9,23 +9,20 @@ public class Items {
 
     @SerializedName("id_item")
     @Expose
-    private String id_item;
-
+    private Integer idItem;
     @SerializedName("name")
     @Expose
     private String name;
-
     @SerializedName("type")
     @Expose
-    private String type;
+    private Integer type;
 
-
-    public String getId_item() {
-        return id_item;
+    public Integer getIdItem() {
+        return idItem;
     }
 
-    public void setId_item(String id_theme) {
-        this.id_item = id_item;
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
     }
 
     public String getName() {
@@ -36,11 +33,11 @@ public class Items {
         this.name = name;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

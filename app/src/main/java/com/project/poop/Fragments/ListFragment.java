@@ -59,15 +59,13 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         thiscontext = getActivity();
 
         listView = (ExpandableListView) view.findViewById(R.id.listView);
         initData();
-        listAdapter = new ExpandableListAdapter(thiscontext, listDataHeader, listHash);
-        listView.setAdapter(listAdapter);
 
         return view;
     }
@@ -96,7 +94,7 @@ public class ListFragment extends Fragment {
 
         getThemes();
 
-        listDataHeader.add("EDMTDev");
+       /* listDataHeader.add("EDMTDev");
         listDataHeader.add("Android");
         listDataHeader.add("Xamarin");
         listDataHeader.add("UWP");
@@ -126,10 +124,10 @@ public class ListFragment extends Fragment {
         listHash.put(listDataHeader.get(1),androidStudio);
         listHash.put(listDataHeader.get(2),xamarin);
         listHash.put(listDataHeader.get(3),uwp);
+        */
     }
 
     private void getThemes() {
-
         if (checkConexion.isConnected()) {
             Call<ResponseTheme> call = retrofitIR.getThemes("list");
             //asynchronous call
@@ -143,14 +141,26 @@ public class ListFragment extends Fragment {
     private Callback<ResponseTheme> callBackResponseTheme = new Callback<ResponseTheme>() {
         @Override
         public void onResponse(Call<ResponseTheme> call, Response<ResponseTheme> response) {
-
             int code = response.code();
             if (code == 200) {
-                Log.d("algo","-"+response.body().getData().get(0).getItems().get(0).getName());
                 ResponseTheme responseTheme = response.body();
                 if (responseTheme != null) {
                     if (responseTheme.getStatus() == 200) {
-                        Toast.makeText(thiscontext, "Se han cargado los temas de estudio", Toast.LENGTH_SHORT).show();
+                        for (int i = 0; i < responseTheme.getData().size(); i++){
+
+                            listDataHeader.add(responseTheme.getData().get(i).getName());
+
+                            List<String> items = new ArrayList<>();
+                            for (int j = 0; j < responseTheme.getData().get(i).getItems().size(); j++){
+                                items.add(responseTheme.getData().get(i).getItems().get(j).getName());
+                            }
+
+                            listHash.put(listDataHeader.get(i), items);
+                        }
+
+                        listAdapter = new ExpandableListAdapter(thiscontext, listDataHeader, listHash);
+                        listView.setAdapter(listAdapter);
+
                     } else {
                         Toast.makeText(thiscontext, "Error al cargar temas de consulta", Toast.LENGTH_SHORT).show();
                     }
@@ -162,7 +172,5 @@ public class ListFragment extends Fragment {
         public void onFailure(Call<ResponseTheme> call, Throwable t) {
 
         }
-
     };
-
 }

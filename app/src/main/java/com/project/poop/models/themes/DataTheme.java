@@ -4,28 +4,26 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataTheme {
 
     @SerializedName("id_theme")
     @Expose
-    private String id_theme;
-
+    private Integer idTheme;
     @SerializedName("name")
     @Expose
     private String name;
-
     @SerializedName("items")
     @Expose
-    private ArrayList<Items>  items;
+    private List<Items> items = null;
 
-
-    public String getId_theme() {
-        return id_theme;
+    public Integer getIdTheme() {
+        return idTheme;
     }
 
-    public void setId_theme(String id_theme) {
-        this.id_theme = id_theme;
+    public void setIdTheme(Integer idTheme) {
+        this.idTheme = idTheme;
     }
 
     public String getName() {
@@ -36,10 +34,12 @@ public class DataTheme {
         this.name = name;
     }
 
-    public ArrayList<Items> getItems() {
+    public List<Items> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Items> items) { this.items = items; }
+    public void setItems(List<Items> items) {
+        this.items = items;
+    }
 
 }

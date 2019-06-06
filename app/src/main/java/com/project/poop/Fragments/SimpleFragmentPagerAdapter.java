@@ -24,11 +24,11 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new HomeFragment();
-        } else if (position == 1){
             return new PlayFragment();
-        } else if (position == 2){
+        } else if (position == 1){
             return new ListFragment();
+        } else if (position == 2){
+            return new HomeFragment();
         } else {
             return new HomeFragment();
         }
@@ -37,7 +37,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     // This determines the number of tabs
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     // This determines the title for each tab

@@ -24,9 +24,10 @@ public class PrincipalActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.settings);
-        tabLayout.getTabAt(1).setIcon(R.drawable.game_question);
-        tabLayout.getTabAt(2).setIcon(R.drawable.study1);
+        tabLayout.getTabAt(0).setIcon(R.drawable.game_question);
+        tabLayout.getTabAt(1).setIcon(R.drawable.study);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_calendario);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_cuaderno);
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);

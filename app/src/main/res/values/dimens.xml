@@ -5,6 +5,6 @@
     <dimen name="size_text_field">15sp</dimen>
     <dimen name="detail_horizontal_margin">20dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="tab_icon_size">50dp</dimen>
+    <dimen name="tab_icon_size">40dp</dimen>
     <dimen name="button_icon_size">90dp</dimen>
 </resources>

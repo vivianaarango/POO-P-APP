@@ -25,7 +25,7 @@ public class PrincipalActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.game_question);
-        tabLayout.getTabAt(1).setIcon(R.drawable.study);
+        tabLayout.getTabAt(1).setIcon(R.drawable.study1);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_calendario);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_cuaderno);
 

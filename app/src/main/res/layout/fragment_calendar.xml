@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/month"
+        android:textSize="18dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:text="Mes"/>
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/compactcalendar_view"
+        android:layout_width="fill_parent"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_height="250dp"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextSize="12sp"
+        app:compactCalendarBackgroundColor="#fff"
+        app:compactCalendarTextColor="@color/colorPrimaryDark"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorAccent"
+        app:compactCalendarCurrentDayBackgroundColor="@color/colorAccentDark"
+        app:compactCalendarMultiEventIndicatorColor="@color/colorPrimaryDark"
+        />
+</LinearLayout>

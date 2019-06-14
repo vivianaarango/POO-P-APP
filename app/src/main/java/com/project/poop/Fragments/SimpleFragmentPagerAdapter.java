@@ -28,7 +28,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         } else if (position == 1){
             return new ListFragment();
         } else if (position == 2){
-            return new HomeFragment();
+            return new CalendarFragment();
         } else {
             return new HomeFragment();
         }

@@ -1,6 +1,7 @@
 package com.project.poop.libraries;
 
 
+import com.project.poop.models.calendar.ResponseCalendar;
 import com.project.poop.models.login.ResponseLogin;
 import com.project.poop.models.question.ResponseAnswer;
 import com.project.poop.models.question.ResponseQuestion;
@@ -72,6 +73,13 @@ public interface InterfaceRetrofit {
     @POST(/*"api/*/"theme/themelist")
     Call<ResponseTheme> getThemes(
             @Field("list") String list
+    );
+
+    /*Obtener lista de eventos y/o fechas guardadas*/
+    @FormUrlEncoded
+    @POST(/*"api/*/"calendar/list")
+    Call<ResponseCalendar> getCalendarList(
+            @Field("id_user") String id_user
     );
 
 }

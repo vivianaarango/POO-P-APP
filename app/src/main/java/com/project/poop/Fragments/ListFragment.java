@@ -156,11 +156,6 @@ public class ListFragment extends Fragment {
 
 
     private void search() {
-        /*ListFragment fragment2 = new ListFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_webview, fragment2);
-        fragmentTransaction.commit();*/
         WebViewFragment nextFrag= new WebViewFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_list, nextFrag, "findThisFragment")

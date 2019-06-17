@@ -54,10 +54,6 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
             Intent intent = new Intent(this, PrincipalActivity.class);
             startActivity(intent);
             finish();
-        } else {
-            Intent intent = new Intent(this, PrincipalActivity.class);
-            startActivity(intent);
-            finish();
         }
 
         userEmail = (EditText) findViewById(R.id.user_name);

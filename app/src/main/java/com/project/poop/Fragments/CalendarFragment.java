@@ -1,5 +1,6 @@
 package com.project.poop.Fragments;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +22,12 @@ import com.project.poop.libraries.CheckConexion;
 import com.project.poop.libraries.InterfaceRetrofit;
 import com.project.poop.managers.ManageSharedPreferences;
 import com.project.poop.managers.ManagerProgressDialog;
+import com.project.poop.models.calendar.DataCalendar;
 import com.project.poop.models.calendar.ResponseCalendar;
-import com.project.poop.models.themes.ResponseTheme;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -54,9 +55,14 @@ public class CalendarFragment extends Fragment {
     private ManagerProgressDialog progress;
     private ManageSharedPreferences manageSharedPreferences;
     private CheckConexion checkConexion;
+    private ExpandableListView listView;
+    private List<String> listDataHeader;
+    private HashMap<String,List<String>> listHash;
+    private ExpandableListAdapterCalendar listAdapter;
+
 
     public CalendarFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -68,37 +74,18 @@ public class CalendarFragment extends Fragment {
 
         thiscontext = getActivity();
         manageSharedPreferences = new ManageSharedPreferences(thiscontext);
+        custom_font_text = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/Louis George Cafe Bold.ttf");
         initData();
 
         month = view.findViewById(R.id.month);
         compactCalendar = view.findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
-        custom_font_text = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/Louis George Cafe Bold.ttf");
-
         Date date = new Date();
         month.setText(dateFormatMonth.format(date));
         month.setTypeface(custom_font_text);
 
-
-        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @Override
-            public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendar.getEvents(dateClicked);
-                Toast.makeText(thiscontext, "Day was clicked: " + dateClicked + " with events " + events, Toast.LENGTH_SHORT).show();
-
-                /*if (dateClicked.toString().compareTo("Fri Jun 14 00:00:00 GMT-05:00 2019") == 0) {
-                    Toast.makeText(thiscontext, "Teachers' Professional Day", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(thiscontext, "No Events Planned for that day"+dateClicked.toString(), Toast.LENGTH_SHORT).show();
-                }*/
-            }
-
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth) {
-                month.setText(dateFormatMonth.format(firstDayOfNewMonth));
-            }
-        });
+        listView = view.findViewById(R.id.listViewCalendar);
 
         return view;
     }
@@ -120,12 +107,16 @@ public class CalendarFragment extends Fragment {
 
         checkConexion = new CheckConexion(thiscontext);
 
+        listDataHeader = new ArrayList<>();
+        listHash = new HashMap<>();
+
         getCalendarList();
     }
 
     private void getCalendarList() {
         if (checkConexion.isConnected()) {
-            Call<ResponseCalendar> call = retrofitIR.getCalendarList(manageSharedPreferences.getUserId());
+            //Call<ResponseCalendar> call = retrofitIR.getCalendarList(manageSharedPreferences.getUserId());
+            Call<ResponseCalendar> call = retrofitIR.getCalendarList("11");
             //asynchronous call
             call.enqueue(callBackResponseCalendar);
         } else {
@@ -141,38 +132,99 @@ public class CalendarFragment extends Fragment {
             if (code == 200) {
                 ResponseCalendar responseCalendar = response.body();
                 if (responseCalendar != null) {
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                    for (int i = 0; i < responseCalendar.getData().size(); i++){
-                        try {
-                            Date mDate = sdf.parse(responseCalendar.getData().get(i).getFecha());
-                            long timeInMilliseconds = mDate.getTime();
-
-                            Random rnd = new Random();
-                            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-                            Event ev1 = new Event(color, timeInMilliseconds, responseCalendar.getData().get(i).getDescription());
-                            compactCalendar.addEvent(ev1);
-
-                            List<Event> events = compactCalendar.getEvents(1433701251000L);
-
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    setCalendarEvents(responseCalendar.getData());
+                    setCalendarList(responseCalendar.getData());
                     Toast.makeText(thiscontext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(thiscontext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }
-
         @Override
         public void onFailure(Call<ResponseCalendar> call, Throwable t) {
 
         }
     };
 
+
+    private void setCalendarEvents(List<DataCalendar> dataCalendar){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        for (int i = 0; i < dataCalendar.size(); i++){
+            try {
+                Date mDate = sdf.parse(dataCalendar.get(i).getFecha());
+                long timeInMilliseconds = mDate.getTime();
+
+                Event ev1 = new Event(Color.RED, timeInMilliseconds, dataCalendar.get(i).getDescription());
+                compactCalendar.addEvent(ev1);
+
+                List<Event> events = compactCalendar.getEvents(1433701251000L);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @Override
+            public void onDayClick(Date dateClicked) {
+                List<Event> events = compactCalendar.getEvents(dateClicked);
+
+                if (events.size() > 0) {
+                    Toast.makeText(thiscontext, ""+events.get(0).getData(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(thiscontext, "No hay eventos agendados para este día", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                month.setText(dateFormatMonth.format(firstDayOfNewMonth));
+            }
+        });
+    }
+
+    private void setCalendarList(List<DataCalendar> dataCalendar){
+
+        listDataHeader.add("Fechas guardadas");
+        List<String> items = new ArrayList<>();
+        final List<String> hours = new ArrayList<>();;
+
+        for (int i = 0; i < dataCalendar.size(); i++){
+
+            String []  fecha = dataCalendar.get(i).getFecha(). split(" ");
+
+
+            items.add(fecha[0]+" - "+dataCalendar.get(i).getDescription());
+            hours.add(fecha[1]);
+
+            listHash.put(listDataHeader.get(0), items);
+        }
+
+        listAdapter = new ExpandableListAdapterCalendar(thiscontext, listDataHeader, listHash);
+        listView.setAdapter(listAdapter);
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+                Integer hour = childPosition;
+                Toast.makeText(thiscontext, ""+hours.get(hour), Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+        });
+
+
+        /*expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int groupPosition, long l) {
+                Item item = (item) topicListAdapter.getGroup(groupPosition);
+                handleClick(item);
+                return false;
+            }
+        });*/
+
+    }
 }
+
+

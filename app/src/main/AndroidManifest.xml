@@ -29,7 +29,8 @@
         </activity>
         <activity
             android:name=".activities.PrincipalActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".activities.GameActivity"
             android:screenOrientation="portrait"

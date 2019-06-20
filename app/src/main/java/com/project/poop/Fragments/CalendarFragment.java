@@ -1,17 +1,25 @@
 package com.project.poop.Fragments;
 
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -59,7 +67,14 @@ public class CalendarFragment extends Fragment {
     private List<String> listDataHeader;
     private HashMap<String,List<String>> listHash;
     private ExpandableListAdapterCalendar listAdapter;
+    private ImageButton add;
+    private String m_Text;
+    private EditText chooseTime;
 
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    String amPm;
 
     public CalendarFragment() {
 
@@ -85,7 +100,39 @@ public class CalendarFragment extends Fragment {
         month.setText(dateFormatMonth.format(date));
         month.setTypeface(custom_font_text);
 
+        add = view.findViewById(R.id.btn_add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add();
+            }
+        });
+
         listView = view.findViewById(R.id.listViewCalendar);
+        chooseTime = view.findViewById(R.id.etChooseTime);
+
+        chooseTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        if (hourOfDay >= 12) {
+                            amPm = "PM";
+                        } else {
+                            amPm = "AM";
+                        }
+                        chooseTime.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
+                    }
+                }, currentHour, currentMinute, false);
+
+                timePickerDialog.show();
+            }
+        });
 
         return view;
     }
@@ -213,17 +260,20 @@ public class CalendarFragment extends Fragment {
                 return false;
             }
         });
+    }
 
+    private void add() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(thiscontext);
 
-        /*expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView expandableListView, View view, int groupPosition, long l) {
-                Item item = (item) topicListAdapter.getGroup(groupPosition);
-                handleClick(item);
-                return false;
-            }
-        });*/
+        View view = LayoutInflater.from(thiscontext).inflate(R.layout.text_inpu_password, null);
 
+        TextView title = (TextView) view.findViewById(R.id.title);
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.image);
+
+        title.setText("Nueva fecha!");
+
+        builder.setView(view);
+        builder.show();
     }
 }
 

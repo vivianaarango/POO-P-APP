@@ -53,7 +53,7 @@ public class PlayFragment extends Fragment {
 
         easyBtn.setEnabled(true);
 
-        if (manageSharedPreferences.getMedium().equals("1")){
+       /* if (manageSharedPreferences.getMedium().equals("1")){
             mediumBtn.setEnabled(true);
         } else {
             mediumBtn.setEnabled(false);
@@ -69,7 +69,7 @@ public class PlayFragment extends Fragment {
             expertBtn.setEnabled(true);
         } else {
             expertBtn.setEnabled(false);
-        }
+        }*/
 
         easyBtn.setOnClickListener(new View.OnClickListener() {
             @Override

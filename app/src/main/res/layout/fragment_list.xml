@@ -19,7 +19,7 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:gravity="center"
-        android:text="fruti rikis"/>
+        android:text="Consultar"/>
 
 
     <ExpandableListView

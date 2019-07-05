@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.util.Log;
@@ -51,6 +53,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class CalendarFragment extends Fragment {
 
     CompactCalendarView compactCalendar;
@@ -68,13 +71,14 @@ public class CalendarFragment extends Fragment {
     private HashMap<String,List<String>> listHash;
     private ExpandableListAdapterCalendar listAdapter;
     private ImageButton add;
-    private String m_Text;
-    private EditText chooseTime;
 
-    Calendar calendar;
-    int currentHour;
-    int currentMinute;
-    String amPm;
+    private EditText EditHour;
+    private ImageButton obtenerHora;
+    private static final String CERO = "0";
+    private static final String DOS_PUNTOS = ":";
+    public final Calendar c = Calendar.getInstance();
+    final int hora = c.get(Calendar.HOUR_OF_DAY);
+    final int minuto = c.get(Calendar.MINUTE);
 
     public CalendarFragment() {
 
@@ -109,28 +113,15 @@ public class CalendarFragment extends Fragment {
         });
 
         listView = view.findViewById(R.id.listViewCalendar);
-        chooseTime = view.findViewById(R.id.etChooseTime);
 
-        chooseTime.setOnClickListener(new View.OnClickListener() {
+        View view2 = inflater.inflate(R.layout.text_inpu_password, container, false);
+        EditHour = view2.findViewById(R.id.hour);
+        //obtenerHora = view.findViewById(R.id.obtener_hora);
+        EditHour.setInputType(InputType.TYPE_NULL);
+        EditHour.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                calendar = Calendar.getInstance();
-                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-                currentMinute = calendar.get(Calendar.MINUTE);
-
-                timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-                        if (hourOfDay >= 12) {
-                            amPm = "PM";
-                        } else {
-                            amPm = "AM";
-                        }
-                        chooseTime.setText(String.format("%02d:%02d", hourOfDay, minutes) + amPm);
-                    }
-                }, currentHour, currentMinute, false);
-
-                timePickerDialog.show();
+            public void onClick(View v) {
+                getHour();
             }
         });
 
@@ -270,10 +261,38 @@ public class CalendarFragment extends Fragment {
         TextView title = (TextView) view.findViewById(R.id.title);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.image);
 
-        title.setText("Nueva fecha!");
+        title.setText("Agregar nueva fecha !");
 
         builder.setView(view);
         builder.show();
+    }
+
+    private void getHour() {
+        TimePickerDialog recogerHora = new TimePickerDialog(thiscontext, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                //Formateo el hora obtenido: antepone el 0 si son menores de 10
+                String horaFormateada =  (hourOfDay < 10)? String.valueOf(CERO + hourOfDay) : String.valueOf(hourOfDay);
+                //Formateo el minuto obtenido: antepone el 0 si son menores de 10
+                String minutoFormateado = (minute < 10)? String.valueOf(CERO + minute):String.valueOf(minute);
+                //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
+                String AM_PM;
+                if(hourOfDay < 12) {
+                    AM_PM = "a.m.";
+                } else {
+                    AM_PM = "p.m.";
+                }
+                //Muestro la hora con el formato deseado
+                EditHour.setText(horaFormateada + DOS_PUNTOS + minutoFormateado + " " + AM_PM);
+                Log.d("fdfsdf","fsdf");
+                //etHora.setText(horaFormateada + DOS_PUNTOS + minutoFormateado + " " + AM_PM);
+            }
+            //Estos valores deben ir en ese orden
+            //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
+            //Pero el sistema devuelve la hora en formato 24 horas
+        }, hora, minuto, false);
+
+        recogerHora.show();
     }
 }
 

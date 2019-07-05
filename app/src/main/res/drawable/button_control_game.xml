@@ -4,7 +4,7 @@
         android:state_pressed="true" />
     <item android:drawable="@drawable/btn_accent"
         android:state_focused="true" />
-    <item android:drawable="@drawable/buttonanswer"
+    <item android:drawable="@drawable/buttondissable"
         android:state_enabled="false" />
     <item android:drawable="@drawable/btn_accent" />
 </selector>

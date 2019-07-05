@@ -66,7 +66,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/month"
                 android:textSize="18dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
@@ -78,7 +77,14 @@
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:gravity="center"
-                android:text="JUEGAR"/>
+                android:text="Juega y aprende"/>
+
+            <ImageView
+                android:layout_width="119dp"
+                android:layout_height="121dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/game_question" />
 
             <Button
                 android:id="@+id/btn_easy"

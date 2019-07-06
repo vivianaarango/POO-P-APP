@@ -2,6 +2,7 @@ package com.project.poop.libraries;
 
 
 import com.project.poop.models.calendar.ResponseCalendar;
+import com.project.poop.models.calendar.ResponseDate;
 import com.project.poop.models.login.ResponseLogin;
 import com.project.poop.models.question.ResponseAnswer;
 import com.project.poop.models.question.ResponseQuestion;
@@ -80,6 +81,15 @@ public interface InterfaceRetrofit {
     @POST(/*"api/*/"calendar/list")
     Call<ResponseCalendar> getCalendarList(
             @Field("id_user") String id_user
+    );
+
+    /* Guardar fecha */
+    @FormUrlEncoded
+    @POST(/*"api/*/"calendar/create")
+    Call<ResponseDate> createDate(
+            @Field("id_user") String id_user,
+            @Field("description") String description,
+            @Field("date") String date
     );
 
 }

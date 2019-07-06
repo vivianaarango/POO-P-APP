@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_date"
     tools:context=".Fragments.DateFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -101,6 +102,7 @@
         </GridLayout>
 
         <Button
+            android:id="@+id/saveDate"
             android:layout_width="249dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"

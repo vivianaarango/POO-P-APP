@@ -3,12 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_home"
     tools:context=".Fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
+        android:textSize="18dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:text="Notas"/>
+
+
+    <ExpandableListView
+        android:id="@+id/listView1"
+        android:paddingTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ExpandableListView>
+
+    <ImageButton
+        android:id="@+id/btn_aggregate"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_add" />
 
 </FrameLayout>

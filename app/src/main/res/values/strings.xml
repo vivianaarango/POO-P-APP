@@ -53,6 +53,8 @@
     <string name="save">Guardar</string>
     <string name="description">Descripción</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="corte1">Corte 1 </string>
+    <string name="corte2">Corte 2 </string>
+    <string name="corte3">Corte 3 </string>
+    <string name="subject">Materia</string>
 </resources>

@@ -93,6 +93,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         answerA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disabledButton();
                 id_answer = A;
                 validateAnswer();
             }
@@ -101,6 +102,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         answerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disabledButton();
                 id_answer = B;
                 validateAnswer();
             }
@@ -109,6 +111,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         answerC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disabledButton();
                 id_answer = C;
                 validateAnswer();
             }
@@ -117,6 +120,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         answerD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disabledButton();
                 id_answer = D;
                 validateAnswer();
             }
@@ -227,7 +231,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
 
     public void getTimeOut(){
         timeOut.setText(null);
-        countDown = new CountDownTimer(15000, 1000) {
+        countDown = new CountDownTimer(25000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timeOut.setText("Te quedan " + millisUntilFinished / 1000 + " segundos");
@@ -327,6 +331,13 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         Intent intent = new Intent(context, PrincipalActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void disabledButton(){
+        answerA.setEnabled(false);
+        answerB.setEnabled(false);
+        answerC.setEnabled(false);
+        answerD.setEnabled(false);
     }
 }
 

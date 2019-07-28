@@ -4,6 +4,7 @@ package com.project.poop.libraries;
 import com.project.poop.models.calendar.ResponseCalendar;
 import com.project.poop.models.calendar.ResponseDate;
 import com.project.poop.models.login.ResponseLogin;
+import com.project.poop.models.qualification.ResponseQualification;
 import com.project.poop.models.question.ResponseAnswer;
 import com.project.poop.models.question.ResponseQuestion;
 import com.project.poop.models.themes.ResponseTheme;
@@ -90,6 +91,13 @@ public interface InterfaceRetrofit {
             @Field("id_user") String id_user,
             @Field("description") String description,
             @Field("date") String date
+    );
+
+    /* Listar materias */
+    @FormUrlEncoded
+    @POST(/*"api/*/"qualification/list")
+    Call<ResponseQualification> listQualification(
+            @Field("id_user") String id_user
     );
 
 }

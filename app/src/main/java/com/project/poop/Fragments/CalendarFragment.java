@@ -126,8 +126,8 @@ public class CalendarFragment extends Fragment {
 
     private void getCalendarList() {
         if (checkConexion.isConnected()) {
-            //Call<ResponseCalendar> call = retrofitIR.getCalendarList(manageSharedPreferences.getUserId());
-            Call<ResponseCalendar> call = retrofitIR.getCalendarList("11");
+            Call<ResponseCalendar> call = retrofitIR.getCalendarList(manageSharedPreferences.getUserId());
+            //Call<ResponseCalendar> call = retrofitIR.getCalendarList("11");
             //asynchronous call
             call.enqueue(callBackResponseCalendar);
         } else {
@@ -233,17 +233,6 @@ public class CalendarFragment extends Fragment {
                 .replace(R.id.fragment_calendar, nextFrag, "findThisFragment")
                 .addToBackStack(null)
                 .commit();
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(thiscontext);
-
-        View view = LayoutInflater.from(thiscontext).inflate(R.layout.text_inpu_password, null);
-
-        TextView title = (TextView) view.findViewById(R.id.title);
-        ImageButton imageButton = (ImageButton) view.findViewById(R.id.image);
-
-        title.setText("Agregar nueva fecha !");
-
-        builder.setView(view);
-        builder.show();*/
     }
 }
 

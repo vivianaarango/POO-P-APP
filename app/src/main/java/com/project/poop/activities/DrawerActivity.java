@@ -1,7 +1,10 @@
 package com.project.poop.activities;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,8 +17,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.project.poop.Fragments.CalendarFragment;
 import com.project.poop.Fragments.ContentFragment;
+import com.project.poop.Fragments.DateFragment;
+import com.project.poop.Fragments.HomeFragment;
+import com.project.poop.Fragments.ListFragment;
 import com.project.poop.Fragments.PlayFragment;
+import com.project.poop.Fragments.ProfileFragment;
 import com.project.poop.R;
 
 public class DrawerActivity extends AppCompatActivity
@@ -70,36 +79,36 @@ public class DrawerActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int title;
+        int title = 0;
         switch (menuItem.getItemId()) {
             case R.id.nav_play:
-                title = R.string.play;
-                setFragment(0);
+                title = 0;
+                setFragment(title);
                 break;
             case R.id.nav_search:
-                title = R.string.search;
+                title = 1;
+                setFragment(title);
                 break;
             case R.id.nav_calendar:
-                title = R.string.calendar;
+                title = 2;
+                setFragment(title);
                 break;
             case R.id.nav_notes:
-                title = R.string.notes;
+                title = 3;
+                setFragment(title);
                 break;
             case R.id.nav_manage:
-                title = R.string.correct;
+                title = 4;
                 break;
             case R.id.nav_profile:
-                title = R.string.profile;
+                title = 5;
+                setFragment(title);
                 break;
             default:
                 throw new IllegalArgumentException("menu option not implemented!!");
         }
 
-        Fragment fragment = ContentFragment.newInstance(getString(title));
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
-
-        setTitle(getString(title));
+        //setTitle(getString(title));
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
@@ -129,24 +138,54 @@ public class DrawerActivity extends AppCompatActivity
     }
 
     public void setFragment(int position) {
-        FragmentManager fragmentManager;
-        FragmentTransaction fragmentTransaction;
+
         switch (position) {
             case 0:
-               /* fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                PlayFragment playFragment = new PlayFragment();
-                fragmentTransaction.replace(R.id.fragment, playFragment);
-                fragmentTransaction.commit();*/
+                PlayFragment nextFrag = new PlayFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, nextFrag)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case 1:
-                /*fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                StarredFragment starredFragment = new StarredFragment();
-                fragmentTransaction.replace(R.id.fragment, starredFragment);
-                fragmentTransaction.commit();*/
+                ListFragment listFragment = new ListFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, listFragment)
+                        .addToBackStack(null)
+                        .commit();
                 break;
+            case 2:
+                CalendarFragment calendarFragment = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    calendarFragment = new CalendarFragment();
+                }
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, calendarFragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case 3:
+                HomeFragment homeFragment = new HomeFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, homeFragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case 5:
+                ProfileFragment profileFragment = new ProfileFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment, profileFragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
         }
+    }
+
+    public void setTab (int title) {
+        Fragment fragment = ContentFragment.newInstance(title);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
     }
 
 }

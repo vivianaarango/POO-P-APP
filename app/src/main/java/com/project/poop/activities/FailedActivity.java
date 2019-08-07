@@ -62,7 +62,7 @@ public class FailedActivity extends AppCompatActivity {
 
     public void btnMain(View view) {
         manageSharedPreferences.setGameId("false");
-        Intent intent = new Intent(context, PrincipalActivity.class);
+        Intent intent = new Intent(context, DrawerActivity.class);
         startActivity(intent);
         finish();
     }

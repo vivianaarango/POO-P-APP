@@ -8,6 +8,7 @@ public class ManageSharedPreferences {
 
     private final String SHARED_PREFS_FILE = "poopPreferences";
     private final String KEY_USER_ID = "userId";
+    private final String KEY_USER_NAME = "userName";
     private final String KEY_EMAIL = "email";
     private final String KEY_SESSION = "nothing";
     private final String KEY_EASY = "easy";
@@ -109,6 +110,16 @@ public class ManageSharedPreferences {
     public void setGameId(String game_id){
         SharedPreferences.Editor editor = getSettings().edit();
         editor.putString(KEY_GAME_ID, game_id);
+        editor.commit();
+    }
+
+    public String getUserName(){
+        return getSettings().getString(KEY_USER_NAME, null);
+    }
+
+    public void setUserName(String userName){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_USER_NAME, userName);
         editor.commit();
     }
 

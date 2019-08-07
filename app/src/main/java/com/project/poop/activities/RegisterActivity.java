@@ -106,12 +106,13 @@ public class RegisterActivity extends AppCompatActivity implements Callback<Resp
                 manageSharedPreferences.setSession(true);
                 manageSharedPreferences.setUserId(responseLogin.getData().getId_user());
                 manageSharedPreferences.setUserEmail(responseLogin.getData().getEmail());
+                manageSharedPreferences.setUserName(responseLogin.getData().getName());
                 manageSharedPreferences.setEasy(responseLogin.getData().getDifficulty().get(0).getIs_approved());
                 manageSharedPreferences.setMedium(responseLogin.getData().getDifficulty().get(1).getIs_approved());
                 manageSharedPreferences.setHard(responseLogin.getData().getDifficulty().get(2).getIs_approved());
                 manageSharedPreferences.setExpert(responseLogin.getData().getDifficulty().get(3).getIs_approved());
 
-                Intent intent = new Intent(this, PrincipalActivity.class);
+                Intent intent = new Intent(this, DrawerActivity.class);
                 startActivity(intent);
                 finish();
             } else {

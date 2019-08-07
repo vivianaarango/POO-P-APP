@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +22,15 @@ import com.project.poop.R;
 public class ContentFragment extends Fragment {
 
     private Context thiscontext;
-    private static final String TEXT = "text";
+    private static Integer INDEX = 0;
 
-    public static ContentFragment newInstance(String text) {
+    public static ContentFragment newInstance(int index) {
         ContentFragment frag = new ContentFragment();
 
+        INDEX = index;
         Bundle args = new Bundle();
-        args.putString(TEXT, text);
+        args.putInt(String.valueOf(INDEX), index);
         frag.setArguments(args);
-
 
         return frag;
     }
@@ -51,6 +52,9 @@ public class ContentFragment extends Fragment {
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_list);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_calendario);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_cuaderno);
+        Log.d("pofin", "index:"+INDEX);
+        TabLayout.Tab _tab = tabLayout.getTabAt(INDEX);
+        _tab.select();
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);

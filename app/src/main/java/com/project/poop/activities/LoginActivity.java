@@ -49,17 +49,11 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
 
         manageSharedPreferences = new ManageSharedPreferences(this);
 
-
         if (manageSharedPreferences.getSession()) {
             Intent intent = new Intent(this, DrawerActivity.class);
             startActivity(intent);
             finish();
         }
-        /*else {
-            Intent intent = new Intent(this, PrincipalActivity.class);
-            startActivity(intent);
-            finish();
-        }*/
 
         userEmail = (EditText) findViewById(R.id.user_name);
         userPass = (EditText) findViewById(R.id.user_pass);
@@ -120,13 +114,14 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
             if (responseLogin.getStatus() == 200) {
                 manageSharedPreferences.setSession(true);
                 manageSharedPreferences.setUserId(responseLogin.getData().getId_user());
+                manageSharedPreferences.setUserName(responseLogin.getData().getName());
                 manageSharedPreferences.setUserEmail(responseLogin.getData().getEmail());
                 manageSharedPreferences.setEasy(responseLogin.getData().getDifficulty().get(0).getIs_approved());
                 manageSharedPreferences.setMedium(responseLogin.getData().getDifficulty().get(1).getIs_approved());
                 manageSharedPreferences.setHard(responseLogin.getData().getDifficulty().get(2).getIs_approved());
                 manageSharedPreferences.setExpert(responseLogin.getData().getDifficulty().get(3).getIs_approved());
 
-                Intent intent = new Intent(this, PrincipalActivity.class);
+                Intent intent = new Intent(this, DrawerActivity.class);
                 startActivity(intent);
                 finish();
             } else {

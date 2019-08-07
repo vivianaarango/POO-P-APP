@@ -66,4 +66,6 @@
     <string name="calendar">AGENDA</string>
     <string name="search">CONSULTAR</string>
     <string name="profile">PERFIL</string>
+
+    <string name="off">Cerrar Sesión</string>
 </resources>

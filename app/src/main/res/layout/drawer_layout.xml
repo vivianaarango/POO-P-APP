@@ -12,7 +12,7 @@
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
@@ -25,5 +25,7 @@
         app:itemIconTint="@drawable/drawer_selector"
         app:itemTextColor="@drawable/drawer_selector"
         app:menu="@menu/navigation_drawer" />
+
+
 
 </android.support.v4.widget.DrawerLayout>

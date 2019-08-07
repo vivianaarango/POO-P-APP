@@ -303,7 +303,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                 if (responseQuestion != null) {
                     if (responseQuestion.getMessage() != null) {
                         Toast.makeText(this, responseQuestion.getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(context, PrincipalActivity.class);
+                        Intent intent = new Intent(context, DrawerActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -328,7 +328,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
         if ( countDown != null){
             countDown.cancel();
         }
-        Intent intent = new Intent(context, PrincipalActivity.class);
+        Intent intent = new Intent(context, DrawerActivity.class);
         startActivity(intent);
         finish();
     }

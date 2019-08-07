@@ -161,20 +161,23 @@ public class CalendarFragment extends Fragment {
     private void setCalendarEvents(List<DataCalendar> dataCalendar){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        for (int i = 0; i < dataCalendar.size(); i++){
-            try {
-                Date mDate = sdf.parse(dataCalendar.get(i).getFecha());
-                long timeInMilliseconds = mDate.getTime();
+        if ( dataCalendar != null ) {
+            for (int i = 0; i < dataCalendar.size(); i++){
+                try {
+                    Date mDate = sdf.parse(dataCalendar.get(i).getFecha());
+                    long timeInMilliseconds = mDate.getTime();
 
-                Event ev1 = new Event(Color.RED, timeInMilliseconds, dataCalendar.get(i).getDescription());
-                compactCalendar.addEvent(ev1);
+                    Event ev1 = new Event(Color.RED, timeInMilliseconds, dataCalendar.get(i).getDescription());
+                    compactCalendar.addEvent(ev1);
 
-                List<Event> events = compactCalendar.getEvents(1433701251000L);
+                    List<Event> events = compactCalendar.getEvents(1433701251000L);
 
-            } catch (ParseException e) {
-                e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
+
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -201,16 +204,19 @@ public class CalendarFragment extends Fragment {
         List<String> items = new ArrayList<>();
         final List<String> hours = new ArrayList<>();;
 
-        for (int i = 0; i < dataCalendar.size(); i++){
+        if (dataCalendar != null){
+            for (int i = 0; i < dataCalendar.size(); i++){
 
-            String []  fecha = dataCalendar.get(i).getFecha(). split(" ");
+                String []  fecha = dataCalendar.get(i).getFecha(). split(" ");
 
 
-            items.add(fecha[0]+" - "+dataCalendar.get(i).getDescription());
-            hours.add(fecha[1]);
+                items.add(fecha[0]+" - "+dataCalendar.get(i).getDescription());
+                hours.add(fecha[1]);
 
-            listHash.put(listDataHeader.get(0), items);
+                listHash.put(listDataHeader.get(0), items);
+            }
         }
+
 
         listAdapter = new ExpandableListAdapterCalendar(thiscontext, listDataHeader, listHash);
         listView.setAdapter(listAdapter);

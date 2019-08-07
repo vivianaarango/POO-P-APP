@@ -36,6 +36,6 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|right"
         android:layout_margin="20dp"
-        android:background="@drawable/ic_add" />
+        android:background="@drawable/ic_masss" />
 
 </FrameLayout>

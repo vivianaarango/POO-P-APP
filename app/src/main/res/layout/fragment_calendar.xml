@@ -64,16 +64,13 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="top|right"
             android:layout_marginRight="20dp"
-            android:background="@drawable/ic_add" />
+            android:background="@drawable/ic_masss" />
 
         <ExpandableListView
             android:id="@+id/listViewCalendar"
             android:layout_marginTop="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ExpandableListView>
-
-
-
 
     </LinearLayout>
 

@@ -57,4 +57,13 @@
     <string name="corte2">Corte 2 </string>
     <string name="corte3">Corte 3 </string>
     <string name="subject">Materia</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="play">JUEGA Y APRENDE</string>
+    <string name="notes">CALIFICACIONES</string>
+    <string name="calendar">AGENDA</string>
+    <string name="search">CONSULTAR</string>
+    <string name="profile">PERFIL</string>
 </resources>

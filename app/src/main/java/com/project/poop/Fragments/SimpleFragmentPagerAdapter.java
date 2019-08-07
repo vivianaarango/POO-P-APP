@@ -3,6 +3,7 @@ package com.project.poop.Fragments;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     // This determines the fragment for each tab
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ import com.project.poop.libraries.MinMaxFilter;
 import com.project.poop.managers.ManageSharedPreferences;
 import com.project.poop.managers.ManagerProgressDialog;
 import com.project.poop.models.calendar.ResponseDate;
+import com.project.poop.models.qualification.ResponseCreateQualification;
+import com.project.poop.models.qualification.ResponseQualification;
 import com.project.poop.models.themes.ResponseTheme;
 
 import java.text.ParseException;
@@ -60,10 +63,9 @@ public class SubjectFragment extends Fragment {
     private ManageSharedPreferences manageSharedPreferences;
     private CheckConexion checkConexion;
     private CheckBox corte1, corte2, corte3;
-    private EditText corte_1, corte_2, corte_3;
-
-
-
+    private EditText corte_1, corte_2, corte_3, name;
+    private String a, b, c;
+    private Button save;
 
     public SubjectFragment() {
         // Required empty public constructor
@@ -75,6 +77,7 @@ public class SubjectFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_subject, container, false);
         thiscontext = getActivity();
+        manageSharedPreferences = new ManageSharedPreferences(thiscontext);
 
         corte1 = view.findViewById(R.id.validate_cut_one);
         corte2 = view.findViewById(R.id.validate_cut_two);
@@ -83,6 +86,9 @@ public class SubjectFragment extends Fragment {
         corte_1 = view.findViewById(R.id.cut_one);
         corte_2 = view.findViewById(R.id.cut_two);
         corte_3 = view.findViewById(R.id.cut_three);
+
+        name = view.findViewById(R.id.subject);
+        save = view.findViewById(R.id.saveSubject);
 
         corte_1.setVisibility(View.GONE);
         corte_2.setVisibility(View.GONE);
@@ -104,6 +110,13 @@ public class SubjectFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setCut();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createSubject();
             }
         });
 
@@ -136,6 +149,62 @@ public class SubjectFragment extends Fragment {
 
 
     }
+
+    private void createSubject() {
+        if (corte1.isChecked() == true ){
+            a = corte_1.getText().toString();
+        } else {
+            a = "-1";
+        }
+
+        if (corte2.isChecked() == true ){
+            b = corte_2.getText().toString();
+        } else {
+            b = "-1";
+        }
+
+        if (corte3.isChecked() == true ){
+            c = corte_3.getText().toString();
+        } else {
+            c = "-1";
+        }
+
+        if (checkConexion.isConnected()) {
+            Call<ResponseCreateQualification> call = retrofitIR.createQualification(manageSharedPreferences.getUserId(), name.getText().toString(), a, b, c);
+            //asynchronous call
+            call.enqueue(callBackResponseCreateQualification);
+        } else {
+            checkConexion.check();
+        }
+    }
+
+    private Callback<ResponseCreateQualification> callBackResponseCreateQualification = new Callback<ResponseCreateQualification>() {
+        @Override
+        public void onResponse(Call<ResponseCreateQualification> call, Response<ResponseCreateQualification> response) {
+
+            int code = response.code();
+            if (code == 200) {
+                ResponseCreateQualification responseCreateQualification = response.body();
+                if (responseCreateQualification != null) {
+                    if (responseCreateQualification.getStatus() == 200) {
+                        Toast.makeText(thiscontext, responseCreateQualification.getMessage(), Toast.LENGTH_SHORT).show();
+                        HomeFragment nextFrag= new HomeFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_subject, nextFrag, "findThisFragment")
+                                .addToBackStack(null)
+                                .commit();
+                    } else {
+                        Toast.makeText(thiscontext, "Error al crear materias", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseCreateQualification> call, Throwable t) {
+
+        }
+    };
 
     public void setCut() {
 

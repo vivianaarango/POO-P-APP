@@ -100,21 +100,3 @@ public class ExpandableListAdapterQualification extends BaseExpandableListAdapte
         return true;
     }
 }
-/*
-* public void validateVolumetricData(View view) {
-
-        if (volumetricData.isChecked() == true ){
-            height_container.setVisibility(View.VISIBLE);
-            width_container.setVisibility(View.VISIBLE);
-            length_container.setVisibility(View.VISIBLE);
-            checkVolumetricData = true;
-        } else {
-            height_container.setVisibility(View.GONE);
-            width_container.setVisibility(View.GONE);
-            length_container.setVisibility(View.GONE);
-            checkVolumetricData = false;
-        }
-
-    }
-
-* */

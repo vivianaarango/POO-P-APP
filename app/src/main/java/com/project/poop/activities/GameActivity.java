@@ -4,6 +4,7 @@ package com.project.poop.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -205,6 +206,8 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                 ResponseAnswer responseAnswer = response.body();
                 if (responseAnswer != null) {
                     if (responseAnswer.getStatus() == 200) {
+                        MediaPlayer mp = MediaPlayer.create(context, R.raw.btn_one);
+                        mp.start();
                         countDown.cancel();
                         Intent intent = new Intent(context, CorrectActivity.class);
                         intent.putExtras(bundle);
@@ -212,6 +215,8 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                         finish();
 
                     } else {
+                        MediaPlayer mp = MediaPlayer.create(context, R.raw.btn_two);
+                        mp.start();
                         manageSharedPreferences.setGameId("false");
                         countDown.cancel();
                         Intent intent = new Intent(context, FailedActivity.class);
@@ -238,6 +243,9 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
             }
 
             public void onFinish() {
+                MediaPlayer mp = MediaPlayer.create(context, R.raw.btn_two);
+                mp.start();
+
                 manageSharedPreferences.setGameId("false");
                 Bundle bundle = new Bundle();
                 bundle.putString("difficultyLevel", level);

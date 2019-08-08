@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -188,6 +189,10 @@ public class SubjectFragment extends Fragment {
                 if (responseCreateQualification != null) {
                     if (responseCreateQualification.getStatus() == 200) {
                         Toast.makeText(thiscontext, responseCreateQualification.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+                        mp.start();
+
                         HomeFragment nextFrag= new HomeFragment();
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_subject, nextFrag, "findThisFragment")

@@ -1,6 +1,7 @@
 package com.project.poop.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -67,6 +68,9 @@ public class RegisterActivity extends AppCompatActivity implements Callback<Resp
 
         if (checkFields()){
 
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.btn_one);
+            mp.start();
+
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -93,6 +97,9 @@ public class RegisterActivity extends AppCompatActivity implements Callback<Resp
                 checkConexion.check();
             }
 
+        } else {
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.btn_two);
+            mp.start();
         }
     }
 

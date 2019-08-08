@@ -4,6 +4,7 @@ package com.project.poop.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -74,6 +75,9 @@ public class PlayFragment extends Fragment {
         easyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+                mp.start();
+
                 Bundle bundle = new Bundle();
                 Intent intent = new Intent(getActivity(),GameActivity.class);
                 bundle.putString("difficultyLevel", "1");
@@ -86,6 +90,9 @@ public class PlayFragment extends Fragment {
         mediumBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+                mp.start();
+
                 Bundle bundle = new Bundle();
                 Intent intent = new Intent(getActivity(),GameActivity.class);
                 bundle.putString("difficultyLevel", "2");
@@ -98,6 +105,9 @@ public class PlayFragment extends Fragment {
         hardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+                mp.start();
+
                 Bundle bundle = new Bundle();
                 Intent intent = new Intent(getActivity(),GameActivity.class);
                 bundle.putString("difficultyLevel", "3");
@@ -110,6 +120,9 @@ public class PlayFragment extends Fragment {
         expertBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+                mp.start();
+
                 Bundle bundle = new Bundle();
                 Intent intent = new Intent(getActivity(),GameActivity.class);
                 bundle.putString("difficultyLevel", "4");

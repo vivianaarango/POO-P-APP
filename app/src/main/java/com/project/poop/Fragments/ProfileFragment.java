@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -79,6 +80,9 @@ public class ProfileFragment extends Fragment {
         off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_two);
+                mp.start();
+
                 manageSharedPreferences.clearAll();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);

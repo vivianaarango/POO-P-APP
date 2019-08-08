@@ -3,6 +3,7 @@ package com.project.poop.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +46,9 @@ public class LevelUpActivity extends AppCompatActivity {
     }
 
     public void btnMain(View view) {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.btn_one);
+        mp.start();
+
         manageSharedPreferences.setGameId("false");
         Intent intent = new Intent(context, DrawerActivity.class);
         startActivity(intent);

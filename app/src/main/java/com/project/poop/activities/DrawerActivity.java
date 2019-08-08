@@ -1,6 +1,7 @@
 package com.project.poop.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -138,9 +139,11 @@ public class DrawerActivity extends AppCompatActivity
     }
 
     public void setFragment(int position) {
-
+        //MediaPlayer mp = MediaPlayer.create(this, R.raw.item);
         switch (position) {
             case 0:
+                //mp.start();
+
                 PlayFragment nextFrag = new PlayFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, nextFrag)
@@ -148,6 +151,7 @@ public class DrawerActivity extends AppCompatActivity
                         .commit();
                 break;
             case 1:
+                //mp.start();
                 ListFragment listFragment = new ListFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, listFragment)
@@ -155,6 +159,7 @@ public class DrawerActivity extends AppCompatActivity
                         .commit();
                 break;
             case 2:
+                //mp.start();
                 CalendarFragment calendarFragment = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     calendarFragment = new CalendarFragment();
@@ -165,6 +170,7 @@ public class DrawerActivity extends AppCompatActivity
                         .commit();
                 break;
             case 3:
+                //mp.start();
                 HomeFragment homeFragment = new HomeFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, homeFragment)
@@ -172,6 +178,7 @@ public class DrawerActivity extends AppCompatActivity
                         .commit();
                 break;
             case 5:
+                //mp.start();
                 ProfileFragment profileFragment = new ProfileFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, profileFragment)

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -199,6 +200,8 @@ public class DateFragment extends Fragment {
     }
 
     private void saveDate(){
+        MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_one);
+        mp.start();
         fecha = txtV_selectDate.getText()+" "+txtV_selectHour.getText();
         //Log.d("holu","date:" + txtV_selectHour.getText()+" "+ txtV_selectDate.getText());
         if (checkConexion.isConnected()) {

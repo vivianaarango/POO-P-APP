@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
     private ManagerProgressDialog progress;
     private ManageSharedPreferences manageSharedPreferences;
     private CheckConexion checkConexion;
-    private TextView name, email, level;
+    private TextView name, email, level, phone;
     private Button off;
 
     public ProfileFragment() {
@@ -75,6 +75,7 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.txt_name);
         email = view.findViewById(R.id.txt_email);
         level = view.findViewById(R.id.txt_level);
+        phone = view.findViewById(R.id.txt_phone);
         off = view.findViewById(R.id.off);
 
         off.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +115,7 @@ public class ProfileFragment extends Fragment {
 
         name.setText(manageSharedPreferences.getUserName());
         email.setText(manageSharedPreferences.getUserEmail());
+        phone.setText(manageSharedPreferences.getPhone());
         level.setText(R.string.easy);
 
         if (manageSharedPreferences.getMedium().equals("1")){

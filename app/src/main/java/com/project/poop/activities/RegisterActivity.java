@@ -113,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<Resp
                 manageSharedPreferences.setSession(true);
                 manageSharedPreferences.setUserId(responseLogin.getData().getId_user());
                 manageSharedPreferences.setUserEmail(responseLogin.getData().getEmail());
+                manageSharedPreferences.setPhone(responseLogin.getData().getPhone());
                 manageSharedPreferences.setUserName(responseLogin.getData().getName());
                 manageSharedPreferences.setEasy(responseLogin.getData().getDifficulty().get(0).getIs_approved());
                 manageSharedPreferences.setMedium(responseLogin.getData().getDifficulty().get(1).getIs_approved());

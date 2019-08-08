@@ -1,6 +1,7 @@
 package com.project.poop.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.project.poop.R;
@@ -42,7 +44,6 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
     private ManagerProgressDialog progress;
     private ManageSharedPreferences manageSharedPreferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
         userEmail = (EditText) findViewById(R.id.user_name);
         userPass = (EditText) findViewById(R.id.user_pass);
 
+
         if (manageSharedPreferences.getUserEmail() != null) {
             userEmail.setText(manageSharedPreferences.getUserEmail());
         }
@@ -69,6 +71,12 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
 
     public void btnRegister(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void btnPassword(View view){
+        Intent intent = new Intent(this, RecoveryPasswordActivity.class);
         startActivity(intent);
         finish();
     }
@@ -123,6 +131,7 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
                 manageSharedPreferences.setUserId(responseLogin.getData().getId_user());
                 manageSharedPreferences.setUserName(responseLogin.getData().getName());
                 manageSharedPreferences.setUserEmail(responseLogin.getData().getEmail());
+                manageSharedPreferences.setPhone(responseLogin.getData().getPhone());
                 manageSharedPreferences.setEasy(responseLogin.getData().getDifficulty().get(0).getIs_approved());
                 manageSharedPreferences.setMedium(responseLogin.getData().getDifficulty().get(1).getIs_approved());
                 manageSharedPreferences.setHard(responseLogin.getData().getDifficulty().get(2).getIs_approved());

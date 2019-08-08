@@ -19,6 +19,10 @@ public class DataLogin {
     @Expose
     private String email;
 
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
     @SerializedName("image")
     @Expose
     private String image;
@@ -45,6 +49,12 @@ public class DataLogin {
     }
 
     public String getEmail() { return email; }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() { return phone; }
 
     public void setEmail(String email) {
         this.email = email;

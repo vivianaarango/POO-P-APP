@@ -125,6 +125,36 @@
                 android:textSize="18sp" />
         </GridLayout>
 
+        <GridLayout
+            android:layout_width="283dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:columnCount="1"
+            android:rowCount="1">
+
+            <TextView
+                style="@style/CounterOverFlow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="15dp"
+                android:text="@string/phone"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_phone"
+                style="@style/TextReadOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="15dp"
+                android:text="3133423569"
+                android:textSize="18sp" />
+        </GridLayout>
+
         <Button
             android:id="@+id/off"
             android:layout_width="180dp"

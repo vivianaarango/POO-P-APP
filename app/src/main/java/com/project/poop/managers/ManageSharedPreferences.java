@@ -9,6 +9,7 @@ public class ManageSharedPreferences {
     private final String SHARED_PREFS_FILE = "poopPreferences";
     private final String KEY_USER_ID = "userId";
     private final String KEY_USER_NAME = "userName";
+    private final String KEY_PHONE = "phone";
     private final String KEY_EMAIL = "email";
     private final String KEY_SESSION = "nothing";
     private final String KEY_EASY = "easy";
@@ -32,7 +33,6 @@ public class ManageSharedPreferences {
         editor.clear();
         editor.commit();
     }
-
 
     public String getEasy(){
         return getSettings().getString(KEY_EASY, null);
@@ -120,6 +120,16 @@ public class ManageSharedPreferences {
     public void setUserName(String userName){
         SharedPreferences.Editor editor = getSettings().edit();
         editor.putString(KEY_USER_NAME, userName);
+        editor.commit();
+    }
+
+    public String getPhone(){
+        return getSettings().getString(KEY_PHONE, null);
+    }
+
+    public void setPhone(String phone){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_PHONE, phone);
         editor.commit();
     }
 

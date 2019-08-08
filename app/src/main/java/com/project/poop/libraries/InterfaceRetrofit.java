@@ -8,6 +8,8 @@ import com.project.poop.models.qualification.ResponseCreateQualification;
 import com.project.poop.models.qualification.ResponseQualification;
 import com.project.poop.models.question.ResponseAnswer;
 import com.project.poop.models.question.ResponseQuestion;
+import com.project.poop.models.recoverypassword.ResponseChangePassword;
+import com.project.poop.models.recoverypassword.ResponseCode;
 import com.project.poop.models.themes.ResponseTheme;
 
 import java.util.Map;
@@ -101,7 +103,6 @@ public interface InterfaceRetrofit {
             @Field("id_user") String id_user
     );
 
-
     /* Crear materias */
     @FormUrlEncoded
     @POST(/*"api/*/"qualification/create")
@@ -111,5 +112,22 @@ public interface InterfaceRetrofit {
             @Field("cut_one") String cut_one,
             @Field("cut_two") String cut_two,
             @Field("cut_three") String cut_three
+    );
+
+    /* Enviar código de verificación */
+    @FormUrlEncoded
+    @POST(/*"api/*/"user/restorepasswordmail")
+    Call<ResponseCode> sendCode(
+            @Field("email") String email
+    );
+
+    /* Cambiar contraseña */
+    @FormUrlEncoded
+    @POST(/*"api/*/"user/changepassword")
+    Call<ResponseChangePassword> changePassword(
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("code") String code
+
     );
 }

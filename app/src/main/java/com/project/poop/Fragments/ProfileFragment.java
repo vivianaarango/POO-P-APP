@@ -87,6 +87,7 @@ public class ProfileFragment extends Fragment {
                 manageSharedPreferences.clearAll();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

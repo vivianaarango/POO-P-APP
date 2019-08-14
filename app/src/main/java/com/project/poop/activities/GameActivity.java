@@ -213,7 +213,6 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                         intent.putExtras(bundle);
                         startActivity(intent);
                         finish();
-
                     } else {
                         MediaPlayer mp = MediaPlayer.create(context, R.raw.btn_two);
                         mp.start();
@@ -270,7 +269,7 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                 if ( manageSharedPreferences.getGameId() == null || manageSharedPreferences.getGameId().equals("false") ) {
                     manageSharedPreferences.setGameId(responseQuestion.getData().getId_game());
                 }
-                Log.d("ggg","ggg"+manageSharedPreferences.getMedium());
+
                 if (responseQuestion.getMessage().equals("1")) {
 
                     if (level.equals("1")) {

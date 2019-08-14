@@ -213,8 +213,9 @@ public class RecoveryPasswordActivity extends AppCompatActivity {
                 if (responseChangePassword != null) {
                     if (responseChangePassword.getStatus() == 200) {
                         Toast.makeText(context, responseChangePassword.getMessage(), Toast.LENGTH_SHORT).show();
-                        code_.setVisibility(View.VISIBLE);
-                        password.setVisibility(View.VISIBLE);
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(context, responseChangePassword.getMessage(), Toast.LENGTH_SHORT).show();
                     }

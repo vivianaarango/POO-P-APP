@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:gravity="right"
+        android:gravity="center"
         android:onClick="btnPassword"
         android:text="@string/recoveryPassword"
         android:textAllCaps="false"

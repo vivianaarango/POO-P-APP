@@ -198,6 +198,7 @@ public class SubjectFragment extends Fragment {
                                 .replace(R.id.fragment_subject, nextFrag, "findThisFragment")
                                 .addToBackStack(null)
                                 .commit();
+
                     } else {
                         Toast.makeText(thiscontext, "Error al crear materias", Toast.LENGTH_SHORT).show();
                     }

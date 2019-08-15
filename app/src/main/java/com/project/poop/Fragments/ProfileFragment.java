@@ -75,7 +75,6 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.txt_name);
         email = view.findViewById(R.id.txt_email);
         level = view.findViewById(R.id.txt_level);
-        phone = view.findViewById(R.id.txt_phone);
         off = view.findViewById(R.id.off);
 
         off.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +85,7 @@ public class ProfileFragment extends Fragment {
 
                 manageSharedPreferences.clearAll();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -116,7 +116,6 @@ public class ProfileFragment extends Fragment {
 
         name.setText(manageSharedPreferences.getUserName());
         email.setText(manageSharedPreferences.getUserEmail());
-        phone.setText(manageSharedPreferences.getPhone());
         level.setText(R.string.easy);
 
         if (manageSharedPreferences.getMedium().equals("1")){

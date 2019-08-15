@@ -1,5 +1,6 @@
 package com.project.poop.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -135,6 +136,7 @@ public class DrawerActivity extends AppCompatActivity
         //cambio de estado, puede ser STATE_IDLE, STATE_DRAGGING or STATE_SETTLING
     }
 
+    @SuppressLint("NewApi")
     public void setFragment(int position) {
         //MediaPlayer mp = MediaPlayer.create(this, R.raw.item);
         switch (position) {
@@ -154,9 +156,8 @@ public class DrawerActivity extends AppCompatActivity
                 break;
             case 2:
                 CalendarFragment calendarFragment = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    calendarFragment = new CalendarFragment();
-                }
+                calendarFragment = new CalendarFragment();
+
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment, calendarFragment)
                         .addToBackStack(null)

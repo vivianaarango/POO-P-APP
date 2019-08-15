@@ -280,7 +280,10 @@ public class GameActivity extends AppCompatActivity implements Callback<Response
                         manageSharedPreferences.setExpert("1");
                     }
 
-                    countDown.cancel();
+                    if ( countDown != null){
+                        countDown.cancel();
+                    }
+
                     Intent intent = new Intent(context, LevelUpActivity.class);
                     startActivity(intent);
                     finish();

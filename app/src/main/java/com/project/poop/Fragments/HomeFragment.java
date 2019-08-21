@@ -37,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
 
-    private ImageButton add;
+    private ImageButton add, edit;
     private ExpandableListView listView;
     private ExpandableListAdapterQualification listAdapter;
     private List<String> listDataHeader;
@@ -68,10 +68,17 @@ public class HomeFragment extends Fragment {
         initData();
 
         add = view.findViewById(R.id.btn_aggregate);
+        edit = view.findViewById(R.id.btn_edit_subject);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add();
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit();
             }
         });
 
@@ -166,6 +173,14 @@ public class HomeFragment extends Fragment {
 
     private void add() {
         SubjectFragment nextFrag= new SubjectFragment();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_home, nextFrag, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void edit() {
+        EditSubjectFragment nextFrag= new EditSubjectFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_home, nextFrag, "findThisFragment")
                 .addToBackStack(null)

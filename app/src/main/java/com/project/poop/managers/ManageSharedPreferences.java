@@ -17,6 +17,10 @@ public class ManageSharedPreferences {
     private final String KEY_HARD = "hard";
     private final String KEY_EXPERT = "expert";
     private final String KEY_GAME_ID = "gameid";
+    private final String KEY_EASY_PERCENT = "easy";
+    private final String KEY_MEDIUM_PERCENT = "medium";
+    private final String KEY_HARD_PERCENT = "hard";
+    private final String KEY_EXPERT_PERCENT = "expert";
 
 
     private Context mContext;
@@ -130,6 +134,46 @@ public class ManageSharedPreferences {
     public void setPhone(String phone){
         SharedPreferences.Editor editor = getSettings().edit();
         editor.putString(KEY_PHONE, phone);
+        editor.commit();
+    }
+
+    public String getEasyPercent(){
+        return getSettings().getString(KEY_EASY_PERCENT, null);
+    }
+
+    public void setEasyPercent(String easyPercent){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_EASY_PERCENT, easyPercent);
+        editor.commit();
+    }
+
+    public String getMediumPercent(){
+        return getSettings().getString(KEY_MEDIUM_PERCENT, null);
+    }
+
+    public void setMediumPercent(String mediumPercent){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_MEDIUM_PERCENT, mediumPercent);
+        editor.commit();
+    }
+
+    public String getHardPercent(){
+        return getSettings().getString(KEY_HARD_PERCENT, null);
+    }
+
+    public void setHardPercent(String hardPercent){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_HARD_PERCENT, hardPercent);
+        editor.commit();
+    }
+
+    public String getExpertPercent(){
+        return getSettings().getString(KEY_EXPERT_PERCENT, null);
+    }
+
+    public void setExpertPercent(String expertPercent){
+        SharedPreferences.Editor editor = getSettings().edit();
+        editor.putString(KEY_EXPERT_PERCENT, expertPercent);
         editor.commit();
     }
 

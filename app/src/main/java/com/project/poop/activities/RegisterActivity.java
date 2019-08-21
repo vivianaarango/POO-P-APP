@@ -120,6 +120,11 @@ public class RegisterActivity extends AppCompatActivity implements Callback<Resp
                 manageSharedPreferences.setHard(responseLogin.getData().getDifficulty().get(2).getIs_approved());
                 manageSharedPreferences.setExpert(responseLogin.getData().getDifficulty().get(3).getIs_approved());
 
+                manageSharedPreferences.setEasyPercent("0");
+                manageSharedPreferences.setMediumPercent("0");
+                manageSharedPreferences.setHardPercent("0");
+                manageSharedPreferences.setExpertPercent("0");
+
                 Intent intent = new Intent(this, DrawerActivity.class);
                 startActivity(intent);
                 finish();

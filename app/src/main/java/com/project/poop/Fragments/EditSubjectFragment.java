@@ -15,11 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -55,7 +57,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class SubjectFragment extends Fragment {
+public class EditSubjectFragment extends Fragment {
 
     private Context thiscontext;
     private Retrofit retrofit;
@@ -66,9 +68,11 @@ public class SubjectFragment extends Fragment {
     private CheckBox corte1, corte2, corte3;
     private EditText corte_1, corte_2, corte_3, name;
     private String a, b, c;
-    private Button save, edit;
+    private Button save;
+    private Spinner subjects;
+    private String textSubject;
 
-    public SubjectFragment() {
+    public EditSubjectFragment() {
         // Required empty public constructor
     }
 
@@ -76,7 +80,7 @@ public class SubjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_subject, container, false);
+        View view = inflater.inflate(R.layout.fragment_subject_edit, container, false);
         thiscontext = getActivity();
         manageSharedPreferences = new ManageSharedPreferences(thiscontext);
 
@@ -88,8 +92,7 @@ public class SubjectFragment extends Fragment {
         corte_2 = view.findViewById(R.id.cut_two);
         corte_3 = view.findViewById(R.id.cut_three);
 
-        name = view.findViewById(R.id.subject);
-        save = view.findViewById(R.id.saveSubject);
+        save = view.findViewById(R.id.editSubject);
 
         corte_1.setVisibility(View.GONE);
         corte_2.setVisibility(View.GONE);
@@ -117,19 +120,55 @@ public class SubjectFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createSubject();
+                editSubject();
             }
         });
-
-
 
         corte_1.setFilters(new InputFilter[]{ new MinMaxFilter("0", "50")});
         corte_2.setFilters(new InputFilter[]{ new MinMaxFilter("0", "50")});
         corte_3.setFilters(new InputFilter[]{ new MinMaxFilter("0", "50")});
 
+        subjects = (Spinner) view.findViewById(R.id.subjects);
+
         initData();
+        initSpinner();
 
         return view;
+    }
+
+    private void editSubject(){
+        if (corte1.isChecked() == true ){
+            a = corte_1.getText().toString();
+        } else {
+            a = "-1";
+        }
+
+        if (corte2.isChecked() == true ){
+            b = corte_2.getText().toString();
+        } else {
+            b = "-1";
+        }
+
+        if (corte3.isChecked() == true ){
+            c = corte_3.getText().toString();
+        } else {
+            c = "-1";
+        }
+
+        if(subjects.getSelectedItem().toString().equals("Seleccionar")){
+            Toast.makeText(thiscontext, "Seleccione la materia que desea editar", Toast.LENGTH_SHORT).show();
+        } else {
+            //Toast.makeText(thiscontext, subjects.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+            textSubject = subjects.getSelectedItem().toString();
+
+            if (checkConexion.isConnected()) {
+                Call<ResponseCreateQualification> call = retrofitIR.editQualification(manageSharedPreferences.getUserId(), textSubject, a, b, c, textSubject);
+                //asynchronous call
+                call.enqueue(callBackResponseCreateQualification);
+            } else {
+                checkConexion.check();
+            }
+        }
     }
 
 
@@ -153,33 +192,6 @@ public class SubjectFragment extends Fragment {
 
     }
 
-    private void createSubject() {
-        if (corte1.isChecked() == true ){
-            a = corte_1.getText().toString();
-        } else {
-            a = "-1";
-        }
-
-        if (corte2.isChecked() == true ){
-            b = corte_2.getText().toString();
-        } else {
-            b = "-1";
-        }
-
-        if (corte3.isChecked() == true ){
-            c = corte_3.getText().toString();
-        } else {
-            c = "-1";
-        }
-
-        if (checkConexion.isConnected()) {
-            Call<ResponseCreateQualification> call = retrofitIR.createQualification(manageSharedPreferences.getUserId(), name.getText().toString(), a, b, c);
-            //asynchronous call
-            call.enqueue(callBackResponseCreateQualification);
-        } else {
-            checkConexion.check();
-        }
-    }
 
     private Callback<ResponseCreateQualification> callBackResponseCreateQualification = new Callback<ResponseCreateQualification>() {
         @Override
@@ -235,4 +247,47 @@ public class SubjectFragment extends Fragment {
         }
     }
 
+    public void initSpinner(){
+        if (checkConexion.isConnected()) {
+            Call<ResponseQualification> call = retrofitIR.listQualification(manageSharedPreferences.getUserId());
+            //asynchronous call
+            call.enqueue(callBackResponseQualification);
+        } else {
+            checkConexion.check();
+        }
+    }
+
+    private Callback<ResponseQualification> callBackResponseQualification = new Callback<ResponseQualification>() {
+        @Override
+        public void onResponse(Call<ResponseQualification> call, Response<ResponseQualification> response) {
+            int code = response.code();
+            if (code == 200) {
+                ResponseQualification responseQualification = response.body();
+                if (responseQualification != null) {
+                    if (responseQualification.getStatus() == 200) {
+                        List<String> items = new ArrayList<>();
+                        items.add("Seleccionar");
+                        for (int i = 0; i < responseQualification.getData().size(); i++){
+                            items.add(responseQualification.getData().get(i).getName());
+                        }
+
+                        ArrayAdapter adapterspinner = new ArrayAdapter<String>(thiscontext, R.layout.spinner_item, items);
+                        adapterspinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        subjects.setAdapter(adapterspinner);
+
+                    } else {
+                        Toast.makeText(thiscontext, "Error al cargar lista de materias", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseQualification> call, Throwable t) {
+
+        }
+    };
+
 }
+
+

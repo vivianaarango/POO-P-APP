@@ -1,6 +1,8 @@
 package com.project.poop.Fragments;
 
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +52,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static java.lang.Integer.parseInt;
+
 
 public class ProfileFragment extends Fragment {
 
@@ -58,7 +63,7 @@ public class ProfileFragment extends Fragment {
     private ManagerProgressDialog progress;
     private ManageSharedPreferences manageSharedPreferences;
     private CheckConexion checkConexion;
-    private TextView name, email, level, phone;
+    private TextView name, email, level, phone, result1, result2, result3, result4;
     private Button off;
 
     public ProfileFragment() {
@@ -74,28 +79,17 @@ public class ProfileFragment extends Fragment {
         manageSharedPreferences = new ManageSharedPreferences(thiscontext);
         name = view.findViewById(R.id.txt_name);
         email = view.findViewById(R.id.txt_email);
-        level = view.findViewById(R.id.txt_level);
-        off = view.findViewById(R.id.off);
 
-        off.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MediaPlayer mp = MediaPlayer.create(thiscontext, R.raw.btn_two);
-                mp.start();
-
-                manageSharedPreferences.clearAll();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+        result1 = view.findViewById(R.id.textEasy);
+        result2 = view.findViewById(R.id.textMedium);
+        result3 = view.findViewById(R.id.textHard);
+        result4 = view.findViewById(R.id.textExpert);
 
         initData();
+        setProgress();
 
         return view;
     }
-
 
     private void initData() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -116,9 +110,10 @@ public class ProfileFragment extends Fragment {
 
         name.setText(manageSharedPreferences.getUserName());
         email.setText(manageSharedPreferences.getUserEmail());
-        level.setText(R.string.easy);
+        
+        //level.setText(R.string.easy);
 
-        if (manageSharedPreferences.getMedium().equals("1")){
+        /*if (manageSharedPreferences.getMedium().equals("1")){
             level.setText(R.string.medium);
         }
 
@@ -128,6 +123,51 @@ public class ProfileFragment extends Fragment {
 
         if (manageSharedPreferences.getExpert().equals("1")){
             level.setText(R.string.expert);
+        }*/
+    }
+
+    public void setProgress() {
+        result1.setText(manageSharedPreferences.getEasyPercent()+"%");
+        result2.setText(manageSharedPreferences.getMediumPercent()+"%");
+        result3.setText(manageSharedPreferences.getHardPercent()+"%");
+        result4.setText(manageSharedPreferences.getExpertPercent()+"%");
+
+        Integer a = parseInt(manageSharedPreferences.getEasyPercent());
+        Integer b = parseInt(manageSharedPreferences.getMediumPercent());
+        Integer c = parseInt(manageSharedPreferences.getHardPercent());
+        Integer d = parseInt(manageSharedPreferences.getExpertPercent());
+
+        if (a >= 0 && a < 20) {
+            result1.setBackgroundResource(R.drawable.btn_red);
+        } else if (a > 20 && a < 65) {
+            result1.setBackgroundResource(R.drawable.btn_yellow);
+        } else {
+            result1.setBackgroundResource(R.drawable.btn_accent);
         }
+
+        if (b >= 0 && b < 20) {
+            result2.setBackgroundResource(R.drawable.btn_red);
+        } else if (b > 20 && b < 65) {
+            result2.setBackgroundResource(R.drawable.btn_yellow);
+        } else {
+            result2.setBackgroundResource(R.drawable.btn_accent);
+        }
+
+        if (c >= 0 && c < 20) {
+            result3.setBackgroundResource(R.drawable.btn_red);
+        } else if (c > 20 && c < 65) {
+            result3.setBackgroundResource(R.drawable.btn_yellow);
+        } else {
+            result3.setBackgroundResource(R.drawable.btn_accent);
+        }
+
+        if (d >= 0 && d < 20) {
+            result4.setBackgroundResource(R.drawable.btn_red);
+        } else if (d > 20 && d < 65) {
+            result4.setBackgroundResource(R.drawable.btn_yellow);
+        } else {
+            result4.setBackgroundResource(R.drawable.btn_accent);
+        }
+
     }
 }

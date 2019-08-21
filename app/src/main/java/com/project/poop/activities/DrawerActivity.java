@@ -28,12 +28,14 @@ import com.project.poop.Fragments.ListFragment;
 import com.project.poop.Fragments.PlayFragment;
 import com.project.poop.Fragments.ProfileFragment;
 import com.project.poop.R;
+import com.project.poop.managers.ManageSharedPreferences;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         DrawerLayout.DrawerListener {
 
     private DrawerLayout drawerLayout;
+    private ManageSharedPreferences manageSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class DrawerActivity extends AppCompatActivity
         drawerLayout.addDrawerListener(this);
 
         View header = navigationView.getHeaderView(0);
+
+        manageSharedPreferences = new ManageSharedPreferences(this);
         //header.findViewById(R.id.header_title).setOnClickListener(new View.OnClickListener() {
         /*    @Override
             public void onClick(View view) {
@@ -103,11 +107,13 @@ public class DrawerActivity extends AppCompatActivity
                 title = 5;
                 setFragment(title);
                 break;
+            case R.id.nav_off:
+                title = 6;
+                setFragment(title);
+                break;
             default:
                 throw new IllegalArgumentException("menu option not implemented!!");
         }
-
-        //setTitle(getString(title));
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
@@ -176,6 +182,16 @@ public class DrawerActivity extends AppCompatActivity
                         .replace(R.id.fragment, profileFragment)
                         .addToBackStack(null)
                         .commit();
+                break;
+            case 6:
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.btn_two);
+                mp.start();
+
+                manageSharedPreferences.clearAll();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                this.finish();
                 break;
 
         }

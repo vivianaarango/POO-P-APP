@@ -114,6 +114,19 @@ public interface InterfaceRetrofit {
             @Field("cut_three") String cut_three
     );
 
+    /* Editar materias */
+    @FormUrlEncoded
+    @POST(/*"api/*/"qualification/create")
+    Call<ResponseCreateQualification> editQualification(
+            @Field("id_user") String id_user,
+            @Field("name") String name,
+            @Field("cut_one") String cut_one,
+            @Field("cut_two") String cut_two,
+            @Field("cut_three") String cut_three,
+            @Field("subject") String subject
+    );
+
+
     /* Enviar código de verificación */
     @FormUrlEncoded
     @POST(/*"api/*/"user/restorepasswordmail")

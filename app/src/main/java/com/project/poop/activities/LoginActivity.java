@@ -137,6 +137,11 @@ public class LoginActivity extends AppCompatActivity implements Callback<Respons
                 manageSharedPreferences.setHard(responseLogin.getData().getDifficulty().get(2).getIs_approved());
                 manageSharedPreferences.setExpert(responseLogin.getData().getDifficulty().get(3).getIs_approved());
 
+                manageSharedPreferences.setEasyPercent(responseLogin.getData().getResult_1());
+                manageSharedPreferences.setMediumPercent(responseLogin.getData().getResult_2());
+                manageSharedPreferences.setHardPercent(responseLogin.getData().getResult_3());
+                manageSharedPreferences.setExpertPercent(responseLogin.getData().getResult_4());
+
                 Intent intent = new Intent(this, DrawerActivity.class);
                 startActivity(intent);
                 finish();

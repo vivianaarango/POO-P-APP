@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_subject_edit"
+    tools:context=".Fragments.EditSubjectFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grayLight"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:autoLink="web"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Notas"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <!--<EditText
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horizontal_margin_edit"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="@dimen/horizontal_margin_edit"
+            android:background="@drawable/field_text"
+            android:drawableLeft="@drawable/ic_lapiz"
+            android:drawablePadding="10sp"
+            android:hint="@string/subject"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColor="@color/grayDark"
+            android:textColorHint="@color/grayMid" />-->
+
+        <Spinner
+            android:id="@+id/subjects"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="@dimen/horizontal_margin_edit"
+            android:layout_marginRight="@dimen/horizontal_margin_edit"
+            android:layout_height="45dp"
+            android:drawablePadding="10sp"
+            android:backgroundTint="@android:color/black"
+            android:layout_marginTop="15dp"/>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_marginTop="25dp">
+
+            <CheckBox
+                android:id="@+id/validate_cut_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:text="@string/corte1"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid"
+                android:buttonTint="@color/grayDark"/>
+
+            <EditText
+                android:id="@+id/cut_one"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:background="@drawable/field_text"
+                android:drawablePadding="10sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:textSize="12dp"
+                android:hint="0.0"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid" />
+
+            <CheckBox
+                android:id="@+id/validate_cut_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:text="@string/corte2"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid"
+                android:buttonTint="@color/grayDark"/>
+
+            <EditText
+                android:id="@+id/cut_two"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:background="@drawable/field_text"
+                android:drawablePadding="10sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:textSize="12dp"
+                android:hint="0.0"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid" />
+
+            <CheckBox
+                android:id="@+id/validate_cut_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:text="@string/corte2"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid"
+                android:buttonTint="@color/grayDark"/>
+
+            <EditText
+                android:id="@+id/cut_three"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="@dimen/horizontal_margin_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/horizontal_margin_edit"
+                android:background="@drawable/field_text"
+                android:drawablePadding="10sp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:textSize="12dp"
+                android:hint="0.0"
+                android:textColor="@color/grayDark"
+                android:textColorHint="@color/grayMid" />
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/editSubject"
+            android:layout_width="249dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/btn_accent"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</FrameLayout>
+
